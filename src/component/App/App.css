@@ -32,12 +32,17 @@
   padding:10px 15px;
 }
 
+.column > h1 {
+  font-family: 'Segoe UI Light';
+  margin-top: 0px;
+}
+
 #conversation-pane {
   background-color: #9aa641;
 }
 
 #conversation-pane #messages p {
-  padding:5px;
+  padding: 5px;
   vertical-align: middle;
 }
 
@@ -46,12 +51,17 @@
   background-color: rgba(255,255,255,0.5);
 }
 
+#conversation-pane #messages p.human {
+  margin-left:50px;
+  background-color:rgba(255,255,255,0.2);  
+}
+
 #inbox-pane {
   background-color: #6aa0a5;
 }
 
 #inbox-pane > table {
-  text-align:left;
+  text-align: left;
 }
 
 #inbox-pane > div {
@@ -60,11 +70,37 @@
   padding: 10px 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#stores-pane {
+  background-color:#c4925d;
+}
+
+#stores-pane > ul {
+  padding-left:0px;
+  list-style: none;
+}
+
+#stores-pane .store {
+  background-color:#f2dfa7;
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+  display:flex;
+}
+
+.store > .name {
+  font-weight:bold;
+  flex:1;
+  padding:6px;
+}
+
+#stores-pane .store .orders {
+  display:flex;
+  font-weight:bold;
+  font-size:20pt;
+  vertical-align: middle;
+}
+
+#stores-pane .store .orders > div {
+  padding-right:8px;
+  display:flex;
+  align-items: center;
 }
