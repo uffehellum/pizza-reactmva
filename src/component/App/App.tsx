@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import InboxPane from '../InboxPane'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="container">
+          <div className="column">
+            <InboxPane />
+          </div>
+        </div>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
