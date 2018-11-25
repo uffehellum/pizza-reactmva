@@ -1,5 +1,10 @@
 import React from 'react'
 
-export default function Message(props: { message: string }) {
-    return <div>{props.message}</div>
+interface MessageProps {
+    who:string,
+    text:string,
+    key:number,
+}
+export default function Message(props:MessageProps) {
+    return <p>{props.who} said: "{props.text}"</p>
 }

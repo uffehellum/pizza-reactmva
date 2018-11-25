@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { Component } from 'react'
 import InboxItem from '../InboxItem'
 import Message from '../Message'
+import { Humans, Conversation } from '../../data'
 
-export default function InboxPane() {
-    return (
+interface InboxPaneProps {
+    humans: Humans,
+    setSelectedConversation: (conversations:Conversation[])=> void,
+}
+
+export default class InboxPane extends Component<InboxPaneProps, any>{
+    constructor(props: InboxPaneProps) {
+        super(props)
+    }
+    renderConvoSum = (human: string) =>
+        <InboxItem
+            key={human}
+            index={human}
+            details={this.props.humans[human]}
+            setSelectedConversation={this.props.setSelectedConversation}
+        />
+
+    render = () =>
         <div id="inbox-pane">
             <h1>inbox</h1>
-            <Message message="hello world" />
             <table>
                 <thead>
                     <tr>
@@ -16,9 +32,9 @@ export default function InboxPane() {
                     </tr>
                 </thead>
                 <tbody>
-                    <InboxItem />
+                    {Object.keys(this.props.humans).map(this.renderConvoSum)}
                 </tbody>
             </table>
         </div>
-    )
+
 }

@@ -1,9 +1,23 @@
 import React from 'react'
+import {Conversation} from '../../data'
+import Message from '../Message'
 
-export default function ConversationPane() {
+interface ConversationPaneProps {
+    conversations: Conversation[],
+}
+
+function renderMessage(val: Conversation) {
+    return <Message who={val.who} text={val.text} key={val.time.getTime()} />
+}
+
+export default function ConversationPane(props: ConversationPaneProps) {
     return (
         <div id="conversation-pane">
-            <h1>conversation</h1>
+        <h1>Conversation</h1>
+        <h3>Select a conversation from the inbox</h3>
+        <div id="messages">
+          {props.conversations.map(renderMessage)}
         </div>
+      </div>
     )
 }
