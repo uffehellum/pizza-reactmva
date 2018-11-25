@@ -8,6 +8,12 @@ class App extends Component {
     return (
       <div className="App">
         <div className="container">
+        <div className="column">
+            <InboxPane />
+          </div>
+          <div className="column">
+            <InboxPane />
+          </div>
           <div className="column">
             <InboxPane />
           </div>
