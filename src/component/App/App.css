@@ -25,10 +25,39 @@
 .container {
   display: flex;
 }
+
 .column {
   flex: 1;
   margin:10px;
   padding:10px 15px;
+}
+
+#conversation-pane {
+  background-color: #9aa641;
+}
+
+#conversation-pane #messages p {
+  padding:5px;
+  vertical-align: middle;
+}
+
+#conversation-pane #messages p.bot {
+  margin-right: 50px;
+  background-color: rgba(255,255,255,0.5);
+}
+
+#inbox-pane {
+  background-color: #6aa0a5;
+}
+
+#inbox-pane > table {
+  text-align:left;
+}
+
+#inbox-pane > div {
+  background-color: rgba(255,255,255,0.5);
+  list-style: none;
+  padding: 10px 20px;
 }
 
 @keyframes App-logo-spin {

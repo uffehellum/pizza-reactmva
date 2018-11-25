@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import ConversationPane from '../ConversationPane'
 import InboxPane from '../InboxPane'
 import './App.css';
 
@@ -12,7 +13,7 @@ class App extends Component {
             <InboxPane />
           </div>
           <div className="column">
-            <InboxPane />
+            <ConversationPane />
           </div>
           <div className="column">
             <InboxPane />
