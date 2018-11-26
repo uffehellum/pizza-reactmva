@@ -1,17 +1,10 @@
 import React, { Component } from 'react'
+import { types } from 'util';
+import { connect } from 'react-redux'
+import { fetchPosts } from './actions/postActions'
+import {Post, PostsState} from './actions/types'
 
-interface Post {
-  body: string
-  id: number
-  title: string
-  userId: number
-}
-
-interface PostsState {
-  posts: Post[]
-}
-
-export default class Posts extends Component<any, PostsState, any> {
+class Posts extends Component<any, PostsState, any> {
 
   constructor(props: PostsState) {
     super(props)
@@ -19,9 +12,7 @@ export default class Posts extends Component<any, PostsState, any> {
 
   componentWillMount() {
     console.log('Posts.componentWillMount()')
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(res => res.json())
-      .then(data => this.setState({ posts: data }))
+    this.props.fetchPosts()
   }
 
   renderPost = (p: Post) =>
@@ -51,3 +42,5 @@ export default class Posts extends Component<any, PostsState, any> {
       {this.state && this.state.posts && this.renderPosts(this.state.posts)}
     </div>
 }
+
+export default connect(null, { fetchPosts })(Posts)

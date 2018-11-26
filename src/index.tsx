@@ -4,8 +4,7 @@ import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 
 import './index.css';
 import App from './component/App/App';
-import Posts from './component/Posts';
-import PostForm from './component/PostForm';
+import PostApp from './component/PostApp';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -16,12 +15,7 @@ ReactDOM.render(
                 <li> <Link to="/posts">Posts</Link></li>
             </ul>
             <Switch>
-                <Route path="/posts" render={()=>
-                    <div>
-                        <PostForm/>
-                        <hr/>
-                        <Posts/>
-                    </div>} />
+                <Route path="/posts" component={PostApp}/>                  
                 <Route path="/" component={App} />
             </Switch>
         </div>
