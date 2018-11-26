@@ -1,27 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import ConversationPane from '../ConversationPane'
 import InboxPane from '../InboxPane'
 import StorePane from '../StorePane'
 import samples from '../../data'
 import { Humans, Stores, Conversation } from '../../data'
-
+import { Route } from 'react-router-dom'
 import './App.css';
 
 interface AppState {
   humans: Humans,
   stores: Stores,
-  selectedConversation: Conversation[]
 }
 
-class App extends Component<any, AppState> {
+interface AppProps {
+  params?: {
+    human?: string
+  }
+  children?: any
+}
+
+class App extends Component<AppProps, AppState> {
 
   constructor(props: any) {
     super(props)
     this.state = {
       humans: {},
       stores: {},
-      selectedConversation: [],
     }
   }
 
@@ -29,23 +33,30 @@ class App extends Component<any, AppState> {
     this.setState(samples)
   }
 
-  setSelectedConversation=(conversations:Conversation[])=>{
-    this.setState({selectedConversation : conversations})
+  componentWillMount() {
+    this.loadSampleData()
   }
 
   render() {
+    const humans = this.state.humans
     return (
       <div className="App">
         <button onClick={this.loadSampleData}>Load</button>
         <div className="container">
           <div className="column">
-            <InboxPane 
-              humans={this.state.humans} 
-              setSelectedConversation= {this.setSelectedConversation} 
-              />
+            <InboxPane
+              humans={humans}
+            />
           </div>
           <div className="column">
-            <ConversationPane conversations={this.state.selectedConversation} />
+            <Route exact path="/" render={() => <div>Select a Conversation from the Inbox</div>} />
+            <Route path="/conversation/:human" render={({ match }) => {
+              const human = match && match.params.human
+              return human && humans[human]
+                ? <ConversationPane human={human} conversations={humans[human].conversations} />
+                : <div>oops {human} doesn't work</div>
+            }} />
+
           </div>
           <div className="column">
             <StorePane stores={this.state.stores} />

@@ -3,7 +3,8 @@ import {Conversation} from '../../data'
 import Message from '../Message'
 
 interface ConversationPaneProps {
-    conversations: Conversation[],
+    conversations: Conversation[]
+    human:string
 }
 
 function renderMessage(val: Conversation) {
@@ -14,7 +15,7 @@ export default function ConversationPane(props: ConversationPaneProps) {
     return (
         <div id="conversation-pane">
         <h1>Conversation</h1>
-        <h3>Select a conversation from the inbox</h3>
+        <h3>{props.human}</h3>
         <div id="messages">
           {props.conversations.map(renderMessage)}
         </div>

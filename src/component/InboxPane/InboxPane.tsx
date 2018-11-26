@@ -1,23 +1,24 @@
 import React, { Component } from 'react'
 import InboxItem from '../InboxItem'
-import Message from '../Message'
 import { Humans, Conversation } from '../../data'
 
 interface InboxPaneProps {
     humans: Humans,
-    setSelectedConversation: (conversations:Conversation[])=> void,
+    // setSelectedConversation: (conversations:Conversation[])=> void,
 }
 
 export default class InboxPane extends Component<InboxPaneProps, any>{
+
     constructor(props: InboxPaneProps) {
         super(props)
     }
+
     renderConvoSum = (human: string) =>
         <InboxItem
             key={human}
             index={human}
             details={this.props.humans[human]}
-            setSelectedConversation={this.props.setSelectedConversation}
+            // setSelectedConversation={this.props.setSelectedConversation}
         />
 
     render = () =>
