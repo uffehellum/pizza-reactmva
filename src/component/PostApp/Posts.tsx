@@ -73,7 +73,7 @@ function mapStateToProps(state: myReduxState, ownProps: OwnProps): StateProps {
 function mapDispatchToProps(dispatch: any, ownProps: OwnProps): DispatchProps {
   return {
     // ...ownProps,
-    fetchPosts: ()=> dispatch(fetchPosts)
+    fetchPosts: ()=> fetchPosts()(dispatch)
   }
 }
 
