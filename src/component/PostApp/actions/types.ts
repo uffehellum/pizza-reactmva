@@ -1,8 +1,7 @@
 
-export const ActionTypes =
-{
-    FETCH_POSTS: 'FETCH_POSTS',
-    NEW_POST: 'NEW_POST',
+export enum ActionTypes {
+    FETCH_POSTS = 'FETCH_POSTS',
+    NEW_POST = 'NEW_POST',
 }
 
 export interface ActionData {
@@ -16,4 +15,3 @@ export interface Post {
     title: string
     userId: number
 }
-

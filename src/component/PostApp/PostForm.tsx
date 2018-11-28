@@ -1,6 +1,9 @@
 import React, { Component, FormEvent } from 'react'
+import { connect } from 'react-redux'
+import { newPost } from './actions/postActions'
+import { Post } from './actions/types'
 
-export default class PostForm extends Component<any, any> {
+class PostForm extends Component<any, any> {
 
     constructor(props: any) {
         super(props)
@@ -20,16 +23,7 @@ export default class PostForm extends Component<any, any> {
             body: this.state.body,
         }
         console.log(post)
-        fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(post)
-        })
-            .then(res => res.json())
-            .then(data => console.log(data))
-
+        this.props.newPost(post)
     }
 
     render = () =>
@@ -54,3 +48,37 @@ export default class PostForm extends Component<any, any> {
             </form>
         </div>
 }
+
+
+function mapDispatchToProps(dispatch: any, ownProps: OwnProps): DispatchProps {
+    return {
+        // ...ownProps,
+        newPost: (post: Post) => newPost(post)(dispatch)
+    }
+}
+
+interface DispatchProps {
+    newPost: (post: Post) => void
+}
+
+interface OwnProps { }
+
+interface StateProps { }
+
+function mapStateToProps(state: myReduxState, ownProps: OwnProps): StateProps {
+    return {
+        ...ownProps,
+        // posts: state.posts
+    }
+}
+
+interface myReduxState { }
+
+interface initialState {
+    posts: Post[]
+}
+
+export default connect
+    <myReduxState, DispatchProps, OwnProps, initialState>
+    (mapStateToProps, mapDispatchToProps)
+    (PostForm)
