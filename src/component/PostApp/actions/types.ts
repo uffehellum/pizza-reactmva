@@ -1,6 +1,14 @@
 
-export const FETCH_POSTS = 'FETCH_POSTS'
-export const NEW_POST = 'NEW_POST'
+export const ActionTypes =
+{
+    FETCH_POSTS: 'FETCH_POSTS',
+    NEW_POST: 'NEW_POST',
+}
+
+export interface ActionData {
+    type: string
+    payload: any
+}
 
 export interface Post {
     body: string
@@ -9,6 +17,3 @@ export interface Post {
     userId: number
 }
 
-export interface PostsState {
-    posts: Post[]
-}

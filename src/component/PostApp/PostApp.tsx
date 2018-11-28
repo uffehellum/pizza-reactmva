@@ -12,7 +12,7 @@ export default class PostApp extends Component {
                 <div>
                     <PostForm />
                     <hr />
-                    <Posts />
+                    <Posts propFromParent={7}/>
                 </div>
             </Provider>
         )

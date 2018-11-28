@@ -1,12 +1,30 @@
 import React, { Component } from 'react'
-import { types } from 'util';
+import Redux from 'redux'
 import { connect } from 'react-redux'
 import { fetchPosts } from './actions/postActions'
-import {Post, PostsState} from './actions/types'
+import {Post} from './actions/types'
 
-class Posts extends Component<any, PostsState, any> {
+export interface OwnProps {
+  propFromParent: number
+}
 
-  constructor(props: PostsState) {
+interface StateProps {
+  posts: Post[] // FromReduxStore
+}
+     
+interface DispatchProps {
+  fetchPosts: () => void
+}
+ 
+type Props = StateProps & DispatchProps & OwnProps
+ 
+interface State {
+  // posts: Post[]
+}
+
+class Posts extends Component<Props, State, any> {
+
+  constructor(props: Props) {
     super(props)
   }
 
@@ -32,15 +50,40 @@ class Posts extends Component<any, PostsState, any> {
         </tr>
       </thead>
       <tbody>
-        {posts.map(this.renderPost)}
+        {posts && posts.map(this.renderPost)}
       </tbody>
     </table>
 
   render = () =>
     <div>
       <h1>Posts</h1>
-      {this.state && this.state.posts && this.renderPosts(this.state.posts)}
+      {this.props && this.props.posts && this.renderPosts(this.props.posts)}
     </div>
 }
 
-export default connect(null, { fetchPosts })(Posts)
+interface myReduxState {
+  posts: Post[]
+}
+
+function mapStateToProps(state: myReduxState, ownProps: OwnProps): StateProps {
+  return {
+    ...ownProps,
+    posts: state.posts
+  }
+}
+ 
+function mapDispatchToProps(dispatch: any, ownProps: OwnProps): DispatchProps {
+  return {
+    // ...ownProps,
+    fetchPosts : fetchPosts.bind(dispatch)
+  }
+}
+
+interface initialState {
+  posts:Post[]
+}
+
+export default connect
+  <myReduxState, DispatchProps, OwnProps, initialState>
+  (mapStateToProps, mapDispatchToProps)
+  (Posts)

@@ -1,15 +1,19 @@
-import { FETCH_POSTS, NEW_POST, Post, PostsState } from './types'
+import { ActionTypes, Post } from './types'
 
 interface DispatchType {
-    type:string
-    payload:PostsState
+    type: string
+    payload: Post[]
 }
 
- 
-export const fetchPosts = () => (dispatch:((x:DispatchType)=>void)) =>
+
+export function fetchPosts(){
+    return function(dispatch: any) {
+    const d = dispatch
     fetch('https://jsonplaceholder.typicode.com/posts')
         .then(res => res.json())
-        .then(posts => dispatch({
-            type: FETCH_POSTS,
+        .then(posts => d({
+            type: ActionTypes.FETCH_POSTS,
             payload: posts,
         }))
+    }
+}
