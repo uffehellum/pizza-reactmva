@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Redux from 'redux'
 import { connect } from 'react-redux'
 import { fetchPosts } from './actions/postActions'
-import {Post} from './actions/types'
+import { Post } from './actions/types'
 
 export interface OwnProps {
   propFromParent: number
@@ -11,13 +11,13 @@ export interface OwnProps {
 interface StateProps {
   posts: Post[] // FromReduxStore
 }
-     
+
 interface DispatchProps {
   fetchPosts: () => void
 }
- 
+
 type Props = StateProps & DispatchProps & OwnProps
- 
+
 interface State {
   // posts: Post[]
 }
@@ -33,13 +33,6 @@ class Posts extends Component<Props, State, any> {
     this.props.fetchPosts()
   }
 
-  renderPost = (p: Post) =>
-    <tr key={p.id}>
-      <td>{p.id}</td>
-      <td>{p.title}</td>
-      <td>{p.userId}</td>
-    </tr>
-
   renderPosts = (posts: Post[]) =>
     <table>
       <thead>
@@ -50,14 +43,19 @@ class Posts extends Component<Props, State, any> {
         </tr>
       </thead>
       <tbody>
-        {posts && posts.map(this.renderPost)}
+        {posts.map((p: Post) =>
+          <tr key={p.id}>
+            <td>{p.id}</td>
+            <td>{p.title}</td>
+            <td>{p.userId}</td>
+          </tr>)}
       </tbody>
     </table>
 
   render = () =>
     <div>
       <h1>Posts</h1>
-      {this.props && this.props.posts && this.renderPosts(this.props.posts)}
+      {this.props && this.props.posts && (this.props.posts as any).items && this.renderPosts((this.props.posts as any).items)}
     </div>
 }
 
@@ -71,16 +69,16 @@ function mapStateToProps(state: myReduxState, ownProps: OwnProps): StateProps {
     posts: state.posts
   }
 }
- 
+
 function mapDispatchToProps(dispatch: any, ownProps: OwnProps): DispatchProps {
   return {
     // ...ownProps,
-    fetchPosts : fetchPosts.bind(dispatch)
+    fetchPosts: ()=> dispatch(fetchPosts)
   }
 }
 
 interface initialState {
-  posts:Post[]
+  posts: Post[]
 }
 
 export default connect
