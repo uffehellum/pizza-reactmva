@@ -55,7 +55,7 @@ class Posts extends Component<Props, State, any> {
   render = () =>
     <div>
       <h1>Posts</h1>
-      {this.props && this.props.posts && (this.props.posts as any).items && this.renderPosts((this.props.posts as any).items)}
+      {this.props && this.props.posts && this.renderPosts(this.props.posts)}
     </div>
 }
 
