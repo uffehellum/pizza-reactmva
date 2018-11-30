@@ -1,4 +1,5 @@
-import { ActionTypes, Post } from './types'
+import { ActionTypes, Post } from '../../types'
+import typicode from '../../repository/typicode'
 
 interface DispatchType {
     type: string
@@ -8,8 +9,7 @@ interface DispatchType {
 type DispatchFunction = (x: DispatchType) => void
 
 export const fetchPosts = () => (dispatch: DispatchFunction) =>
-    fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(res => res.json())
+    typicode.FetchPosts()
         .then(posts => dispatch({
             type: ActionTypes.FETCH_POSTS,
             payload: posts,

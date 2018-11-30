@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 
 import './index.css';
-import App from './component/App/App';
-import PostApp from './component/PostApp';
+import PizzaPage from './components/PizzaPage';
+import PostApp from './components/PostPage';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -16,7 +16,7 @@ ReactDOM.render(
             </ul>
             <Switch>
                 <Route path="/posts" component={PostApp}/>                  
-                <Route path="/" component={App} />
+                <Route path="/" component={PizzaPage} />
             </Switch>
         </div>
     </BrowserRouter>, document.getElementById('root'));

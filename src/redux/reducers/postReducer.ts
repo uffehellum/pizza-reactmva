@@ -1,5 +1,4 @@
-import { ActionTypes, ActionData } from '../actions/types'
-import { Post } from '../actions/types'
+import { ActionTypes, ActionData, Post } from '../../types'
 
 const initialState: Post[] = []
 

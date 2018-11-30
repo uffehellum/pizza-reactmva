@@ -5,7 +5,7 @@ import StorePane from '../StorePane'
 import samples from '../../data'
 import { Humans, Stores, Conversation } from '../../data'
 import { Route } from 'react-router-dom'
-import './App.css';
+import './PizzaPage.css';
 
 interface AppState {
   humans: Humans,

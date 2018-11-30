@@ -1,5 +1,5 @@
 import React from 'react'
-import StorePane from '../../component/StorePane'
+import StorePane from '../../components/StorePane'
 import samples from '../../data'
 
 export default function stores() {

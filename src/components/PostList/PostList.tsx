@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Redux from 'redux'
 import { connect } from 'react-redux'
-import { fetchPosts } from './actions/postActions'
-import { Post } from './actions/types'
+import { fetchPosts } from '../../redux/actions/postActions'
+import { Post } from '../../types'
 
 export interface OwnProps {
   propFromParent: number
@@ -22,7 +22,7 @@ interface State {
   // posts: Post[]
 }
 
-class Posts extends Component<Props, State, any> {
+class PostList extends Component<Props, State, any> {
 
   constructor(props: Props) {
     super(props)
@@ -84,4 +84,4 @@ interface initialState {
 export default connect
   <myReduxState, DispatchProps, OwnProps, initialState>
   (mapStateToProps, mapDispatchToProps)
-  (Posts)
+  (PostList)

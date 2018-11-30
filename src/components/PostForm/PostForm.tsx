@@ -1,9 +1,9 @@
 import React, { Component, FormEvent } from 'react'
 import { connect } from 'react-redux'
-import { newPost } from './actions/postActions'
-import { Post } from './actions/types'
+import { newPost } from '../../redux/actions/postActions'
+import { Post } from '../../types'
 
-class PostForm extends Component<any, any> {
+export class PostForm extends Component<any, any> {
 
     constructor(props: any) {
         super(props)
