@@ -19,6 +19,7 @@ export const newPost = (post: Post) =>
     (dispatch: DispatchFunction) =>
         fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
+            mode:'cors',
             headers: {
                 'content-type': 'application/json'
             },

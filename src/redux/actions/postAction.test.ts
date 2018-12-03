@@ -1,10 +1,17 @@
 import { fetchPosts, newPost } from './postActions'
 
-describe('fetchPosts exists', () =>{
-    it('exists', ()=>{
+describe('fetchPosts', () => {
+    it('exists', () => {
         expect(fetchPosts).not.toBeNull()
     })
 })
+
+describe('newPost', () => {
+    it('exists', () => {
+        expect(newPost).not.toBeNull()
+    })
+})
+
 // describe('post actions', () => {
 //     it('thunk etc', () => {
 //         const initialState = {}
