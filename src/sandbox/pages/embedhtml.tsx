@@ -1,5 +1,5 @@
 import React from 'react'
-import EmbedhtmlPane from '../../component/EmbedHtmlPane'
+import EmbedhtmlPane from '../../components/EmbedHtmlPane'
 
 export default function EmbedhtmlPage() {
     return (

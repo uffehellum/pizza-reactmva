@@ -1,15 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import  { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 
 import './index.css';
-import App from './component/App/App';
-import ConversationPane from './component/ConversationPane';
+import PizzaPage from './components/PizzaPage';
+import PostApp from './components/PostPage';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
     <BrowserRouter>
-        <Route path="/" component={App} />
+        <div>
+            <ul id="topnav">
+                <li> <Link to="/">Home</Link></li>
+                <li> <Link to="/posts">Posts</Link></li>
+            </ul>
+            <Switch>
+                <Route path="/posts" component={PostApp}/>                  
+                <Route path="/" component={PizzaPage} />
+            </Switch>
+        </div>
     </BrowserRouter>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
