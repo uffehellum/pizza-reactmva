@@ -1,3 +1,4 @@
+import AddPost from './AddPost'
 import FetchPosts from './FetchPosts'
-export default {FetchPosts}
 
+export default { AddPost, FetchPosts }
