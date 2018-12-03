@@ -10,7 +10,7 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
     <BrowserRouter>
         <div>
-            <ul>
+            <ul id="topnav">
                 <li> <Link to="/">Home</Link></li>
                 <li> <Link to="/posts">Posts</Link></li>
             </ul>
