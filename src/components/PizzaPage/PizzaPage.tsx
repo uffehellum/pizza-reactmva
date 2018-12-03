@@ -41,7 +41,6 @@ class App extends Component<AppProps, AppState> {
     const humans = this.state.humans
     return (
       <div className="App">
-        <button onClick={this.loadSampleData}>Load</button>
         <div className="container">
           <div className="column">
             <InboxPane

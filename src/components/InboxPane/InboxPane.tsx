@@ -18,24 +18,13 @@ export default class InboxPane extends Component<InboxPaneProps, any>{
             key={human}
             index={human}
             details={this.props.humans[human]}
-            // setSelectedConversation={this.props.setSelectedConversation}
+        // setSelectedConversation={this.props.setSelectedConversation}
         />
 
     render = () =>
         <div id="inbox-pane">
             <h1>inbox</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Chat time</th>
-                        <th>From</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Object.keys(this.props.humans).map(this.renderConvoSum)}
-                </tbody>
-            </table>
+            {Object.keys(this.props.humans).map(this.renderConvoSum)}
         </div>
 
 }
