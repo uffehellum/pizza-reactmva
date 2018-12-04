@@ -1,3 +1,5 @@
 export * from './ActionData'
 export * from './ActionTypes'
+export * from './Content'
+export * from './ContentRequest'
 export * from './Post'

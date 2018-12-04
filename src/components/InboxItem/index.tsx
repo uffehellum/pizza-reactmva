@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { Conversation, HumanOrder } from '../../data'
-import { Button} from 'office-ui-fabric-react/lib/Button'
-import {DocumentCard, DocumentCardTitle} from 'office-ui-fabric-react/lib/DocumentCard'
+import { Button } from 'office-ui-fabric-react/lib/Button'
+import { DocumentCard, DocumentCardTitle } from 'office-ui-fabric-react/lib/DocumentCard'
 
 interface InboxItemProps {
     details: {
@@ -36,10 +35,7 @@ export default class InboxItem extends Component<InboxItemProps, any>{
     render = () =>
         <DocumentCard onClickHref={'/conversation/' + encodeURIComponent(this.props.index)}>
             <DocumentCardTitle title={this.props.index} />
-                    {this.messageSummary(this.props.details.conversations)}
-                <Button href={'/conversation/' + encodeURIComponent(this.props.index)}>
-                    
-                </Button>
+            {this.messageSummary(this.props.details.conversations)}
             {this.props.details.orders.sort(this.sortByDate)[0].status}
         </DocumentCard >
 
