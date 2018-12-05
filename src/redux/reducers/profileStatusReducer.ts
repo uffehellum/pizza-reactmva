@@ -2,7 +2,7 @@ import { ActionTypes, ActionData, Post, ProfileStatus } from '../../types'
 
 const initialState: ProfileStatus = {
     currentlyValid: false,
-    subscribername: '',
+    subscribername: 'default name',
     subscriptionlevel: 'silver',
     xboxtoken: '1234'
 }

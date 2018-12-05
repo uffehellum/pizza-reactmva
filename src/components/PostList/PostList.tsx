@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Redux from 'redux'
 import { connect } from 'react-redux'
 import { fetchPosts } from '../../redux/actions/postActions'
 import { Post } from '../../types'

@@ -1,3 +1,3 @@
-import { ProfileStatusCard } from './ProfileStatusCard'
+import ProfileStatusCard  from './ProfileStatusCard'
 
 export default ProfileStatusCard
