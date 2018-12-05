@@ -1,6 +1,9 @@
 import { Content, ContentRequest } from '../../types'
 
-export default async function FetchContent(relayUrl: string, request: ContentRequest): Promise<Content> {
+const defaultUrl = "hppt://localhost:1234/content"
+
+export default async function FetchContent(request: ContentRequest, 
+    relayUrl: string = defaultUrl): Promise<Content> {
     const params: RequestInit = {
         method: 'POST',
         mode:'cors',
