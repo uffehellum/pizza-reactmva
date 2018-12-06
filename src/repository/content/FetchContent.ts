@@ -2,8 +2,13 @@ import { Content, ContentRequest } from '../../types'
 
 const defaultUrl = "hppt://localhost:1234/content"
 
+export interface ContentConfig {
+    contentUrl: string
+}
+
 export default async function FetchContent(request: ContentRequest, 
-    relayUrl: string = defaultUrl): Promise<Content> {
+    config: ContentConfig): Promise<Content> {
+    const relayUrl = config.contentUrl || defaultUrl
     const params: RequestInit = {
         method: 'POST',
         mode:'cors',
