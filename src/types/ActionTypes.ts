@@ -1,4 +1,5 @@
 export enum ActionTypes {
+    PROFILESTATUS_FETCH = 'PROFILESTATUS_RECEIVED',
     FETCH_POSTS = 'FETCH_POSTS',
     NEW_POST = 'NEW_POST',
 }

@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import postReducer from './postReducer'
+import profileStatusReducer from './profileStatusReducer'
 
 export default combineReducers({
-    posts: postReducer
+    posts: postReducer,
+    profileStatus: profileStatusReducer,
 })

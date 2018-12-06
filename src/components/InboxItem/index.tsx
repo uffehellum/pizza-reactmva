@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Conversation, HumanOrder } from '../../data'
-import { Button } from 'office-ui-fabric-react/lib/Button'
 import { DocumentCard, DocumentCardTitle } from 'office-ui-fabric-react/lib/DocumentCard'
 
 interface InboxItemProps {
