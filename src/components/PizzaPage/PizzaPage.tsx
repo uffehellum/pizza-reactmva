@@ -6,6 +6,9 @@ import samples from '../../data'
 import { Humans, Stores, Conversation } from '../../data'
 import { Route } from 'react-router-dom'
 import './PizzaPage.css';
+// import { initializeIcons } from '@uifabric/icons'
+
+// initializeIcons()
 
 interface AppState {
   humans: Humans,

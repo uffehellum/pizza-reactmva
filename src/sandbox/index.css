@@ -2,6 +2,10 @@
   list-style: none;
 }
 
+#sandboxnav li {
+  display: inline
+}
+
 body {
   background-color: #f88;
   margin: 0;

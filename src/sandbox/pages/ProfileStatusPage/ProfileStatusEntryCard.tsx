@@ -1,5 +1,5 @@
 import React, { Component, FormEvent } from 'react'
-import { PrimaryButton } from 'office-ui-fabric-react/lib/Button'
+import { PrimaryButton, ActionButton } from 'office-ui-fabric-react/lib/Button'
 import { DocumentCard, DocumentCardTitle } from 'office-ui-fabric-react/lib/DocumentCard'
 import { TextField } from 'office-ui-fabric-react/lib/TextField'
 import { ProfileStatus, ActionTypes } from '../../../types'
@@ -15,47 +15,43 @@ interface StateProps { profileStatus: ProfileStatus }
 
 type Props = DispatchProps & StateProps & OwnProps
 
-export class MockRequestProfileStatusCard extends Component<Props, any> {
+export class ProfileStatusEntryCard extends Component<Props, any> {
 
-    prefillJoan = () => this.setState({
-        currentlyValid: '1',
-        subscribername: 'Joan',
-        subscriptionlevel: 'state level',
+    prefillJoan = () => this.props.submit({
+        currentlyValid: true,
+        subscribername: 'Joan Pumpkin',
+        subscriptionlevel: 'Gold',
         xboxtoken: 'joan token',
+        validfrom: new Date(2018, 10, 31),
+        validto: new Date(2020, 10, 31),
+    })
+
+    prefillPeter = () => this.props.submit({
+        currentlyValid: false,
+        subscribername: 'Peter Peter',
+        subscriptionlevel: 'Silver',
+        xboxtoken: 'peter token',
+        validfrom: undefined,
+        validto: undefined,
     })
 
     constructor(props: Props) {
         super(props)
-        this.state = {
-            currentlyValid: props.profileStatus.currentlyValid ? '1' : '0',
-            subscribername: props.profileStatus.subscribername,
-            subscriptionlevel: props.profileStatus.subscriptionlevel,
-            xboxtoken: props.profileStatus.xboxtoken,
-        }
     }
 
     onSubmit = (e: FormEvent<any>) => {
         e.preventDefault()
-        console.log(this.state)
-        const profileStatus: ProfileStatus = {
-            currentlyValid: '1' === this.state.currentlyValid,
-            subscribername: this.state.subscribername,
-            subscriptionlevel: this.state.subscriptionlevel,
-            // validfrom?: Date
-            // validto?: Date
-            xboxtoken: this.state.xboxtoken,
-        }
-        this.props.submit(profileStatus)
     }
 
     onChanged = ({ target }: { target: { name: string, value: string } }) =>
         this.setState({ [target.name]: target.value })
 
-    onChange = (e: any, newValue?: string) => {
-        this.setState({ [e.target.name]: newValue })
+    onChangeText = (e: any, newValue?: string) => {
+        this.props.submit({
+            ...this.props.profileStatus,
+            [e.target.name]: newValue,
+        })
     }
-
-    
 
     render = () =>
         <DocumentCard>
@@ -64,32 +60,34 @@ export class MockRequestProfileStatusCard extends Component<Props, any> {
                 <TextField
                     label="currentlyValid"
                     name="currentlyValid"
-                    defaultValue={this.state.currentlyValid}
+                    defaultValue={this.props.profileStatus.currentlyValid ? 'yes' : 'no'}
                     required={true}
-                    onChange={this.onChange}
+                    readOnly={true}
+                    onChange={this.onChangeText}
                 />
                 <TextField
                     label="subscribername"
                     name="subscribername"
-                    defaultValue={this.state.subscribername}
+                    defaultValue={this.props.profileStatus.subscribername}
                     required={true}
-                    onChange={this.onChange}
+                    onChange={this.onChangeText}
                 />
                 <TextField
                     label="subscriptionlevel"
                     name="subscriptionlevel"
-                    defaultValue={this.state.subscriptionlevel}
+                    defaultValue={this.props.profileStatus.subscriptionlevel}
                     required={true}
-                    onChange={this.onChange}
+                    onChange={this.onChangeText}
                 />
                 <TextField
                     label="xboxtoken"
                     name="xboxtoken"
-                    defaultValue={this.state.xboxtoken}
+                    defaultValue={this.props.profileStatus.xboxtoken}
                     required={true}
-                    onChange={this.onChange}
+                    onChange={this.onChangeText}
                 />
-                <PrimaryButton type="submit">Submit</PrimaryButton>
+                <ActionButton onClick={this.prefillJoan} >Joan</ActionButton>
+                <ActionButton onClick={this.prefillPeter} >Peter</ActionButton>
             </form>
         </DocumentCard>
 
@@ -117,10 +115,7 @@ const mapStateToProps: MapStateToProps<StateProps, OwnProps, myReduxState> =
         }
     }
 
-
-interface initialState { } // & ProfileStatus
-
 export default connect
     <StateProps, DispatchProps, OwnProps, myReduxState>
     (mapStateToProps, mapDispatchToProps)
-    (MockRequestProfileStatusCard)
+    (ProfileStatusEntryCard)
