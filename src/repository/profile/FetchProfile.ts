@@ -2,7 +2,12 @@ import { ProfileStatusRequest, ProfileStatus } from '../../types'
 
 const defaultUrl = 'http://localhost:1234/profileserver'
 
-export async function FetchProfile(request: ProfileStatusRequest,url: string = defaultUrl): Promise<ProfileStatus> {
+export interface ProfileStatusConfig {
+    profileStatusUrl:string
+}
+
+export async function FetchProfile(request: ProfileStatusRequest, config: ProfileStatusConfig): Promise<ProfileStatus> {
+    const url = config.profileStatusUrl || defaultUrl
     const params: RequestInit = {
         method: 'POST',
         mode: 'cors',
