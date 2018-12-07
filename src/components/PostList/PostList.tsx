@@ -21,7 +21,7 @@ interface State {
   // posts: Post[]
 }
 
-class PostList extends Component<Props, State, any> {
+export class PostList extends Component<Props, State, any> {
 
   constructor(props: Props) {
     super(props)
