@@ -1,8 +1,18 @@
+React/redux example by uffe hellum
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Code from microsoft "pizza app" youtube revisited
+- Code from typicode rest service used for redux-react
+- Office-ui-fabric-react components
+- support jest+office-ui with craco https://www.npmjs.com/package/@craco/craco
 
-## Available Scripts
+### `npm run sandbox`
 
-In the project directory, you can run:
+Runs the app in "pink sandbox" mode, where information and components are made visible.<br>
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
+
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
 ### `npm start`
 

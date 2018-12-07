@@ -1,5 +1,5 @@
 import React from 'react'
-import { DocumentCard, DocumentCardTitle, DocumentCardLogo } from 'office-ui-fabric-react/lib/DocumentCard'
+import { DocumentCard, DocumentCardLogo } from 'office-ui-fabric-react/lib/DocumentCard'
 
 interface MessageProps {
     who: string,

@@ -5,7 +5,7 @@ describe('typicode fetch posts', () => {
         try {
             typicode.FetchPosts()
             .then(result =>{
-                expect(result.length).toEqual(101)
+                expect(result.length >= 100).toEqual(true)
                 done()
             })
         } catch (ex) {
