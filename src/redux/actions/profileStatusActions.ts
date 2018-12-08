@@ -1,12 +1,5 @@
-import { ActionTypes, ProfileStatus, ProfileStatusRequest } from '../../types'
+import { ActionTypes, DispatchFunction, ProfileStatus, ProfileStatusRequest } from '../../types'
 import { FetchProfile, ProfileStatusConfig } from '../../repository/profile'
-
-interface DispatchType {
-    type: string
-    payload: any
-}
-
-type DispatchFunction = (x: DispatchType) => void
 
 export const fetchProfileStatus = 
     (request: ProfileStatusRequest, config:ProfileStatusConfig) => 

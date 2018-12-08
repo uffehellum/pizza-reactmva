@@ -20,16 +20,19 @@ export class MockRequestProfileStatusCard extends Component<Props, any> {
     prefillLocalhost = () => this.props.submit({
         ContentUrl: 'http://localhost:3002/contentmock',
         ProfileStatusUrl: 'http://localhost:3003/profilemock',
+        TelemetryUrl: 'https://vortex-sandbox.data.microsoft.com/collect/v1',
     })
 
     prefillStage = () => this.props.submit({
         ContentUrl: 'http://stage/content',
         ProfileStatusUrl: 'http://stage/profile',
+        TelemetryUrl: 'https://vortex-sandbox.data.microsoft.com/collect/v1',
     })
 
     prefillProduction = () => this.props.submit({
         ContentUrl: 'http://xbox.com/content',
         ProfileStatusUrl: 'http://xbox.com/profile',
+        TelemetryUrl: 'https://vortex.data.microsoft.com/collect/v1',
     })
 
     constructor(props: Props) {

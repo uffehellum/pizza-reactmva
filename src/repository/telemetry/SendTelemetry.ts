@@ -1,6 +1,6 @@
 import { TelemetryEvent } from '../../types'
 
-const defaultUrl = "hppt://localhost:1234/content"
+const defaultUrl = "https://vortex-sandbox.data.microsoft.com/collect/v1"
 
 export interface TelemetryConfig {
     telemetryUrl: string
