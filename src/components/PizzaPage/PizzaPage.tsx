@@ -45,7 +45,7 @@ class App extends Component<AppProps, AppState> {
     return (
       <div className="App">
         <div className="container">
-          <div className="column">
+          <div className="column" id="inbox">
             <InboxPane
               humans={humans}
             />
@@ -60,7 +60,7 @@ class App extends Component<AppProps, AppState> {
             }} />
 
           </div>
-          <div className="column">
+          <div className="column" id="storepane">
             <StorePane stores={this.state.stores} />
           </div>
         </div>
