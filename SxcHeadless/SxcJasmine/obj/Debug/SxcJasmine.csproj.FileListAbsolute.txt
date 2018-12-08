@@ -1,0 +1,8 @@
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\SxcJasmine\bin\Debug\SxcJasmine.dll
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\SxcJasmine\bin\Debug\SxcJasmine.pdb
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\SxcJasmine\bin\Debug\WebDriver.dll
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\SxcJasmine\bin\Debug\WebDriver.xml
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\SxcJasmine\obj\Debug\SxcJasmine.csprojResolveAssemblyReference.cache
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\SxcJasmine\obj\Debug\SxcJasmine.dll
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\SxcJasmine\obj\Debug\SxcJasmine.pdb
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\SxcJasmine\bin\Debug\SeleniumExtras.WaitHelpers.dll

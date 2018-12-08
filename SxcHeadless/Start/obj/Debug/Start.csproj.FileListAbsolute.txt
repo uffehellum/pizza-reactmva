@@ -1,0 +1,6 @@
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\Start\bin\Debug\Start.exe.config
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\Start\bin\Debug\Start.exe
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\Start\bin\Debug\Start.pdb
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\Start\obj\Debug\Start.csprojResolveAssemblyReference.cache
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\Start\obj\Debug\Start.exe
+C:\Users\v-ufhel\git\uffehellum\SxcHeadless\Start\obj\Debug\Start.pdb
