@@ -12,7 +12,7 @@ const data:SampleDataType = {
             "size": "S"
           }],
           "price": 15,
-          "address": "321 Sesame Street, Montreal, Canada",
+          "address": "555 elm street, Seattle, Washington",
           "status": "In The Oven" // status := Open -> Confirmed -> In The Oven -> Delivered
         },
         {

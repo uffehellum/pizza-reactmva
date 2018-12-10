@@ -1,0 +1,9 @@
+div.inbox {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+div.inbox div.ms-DocumentCard {
+    display: flex;
+    flex-direction: column;
+}

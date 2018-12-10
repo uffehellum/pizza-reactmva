@@ -1,6 +1,7 @@
 import React from 'react'
 import {Conversation} from '../../data'
 import Message from '../Message'
+import './ConversationPane.css'
 
 interface ConversationPaneProps {
     conversations: Conversation[]
@@ -15,6 +16,7 @@ export default function ConversationPane(props: ConversationPaneProps) {
     return (
         <div id="conversation-pane">
         <h1>Conversation</h1>
+        <i className="ms-Icon ms-Icon--LightningBolt" aria-hidden="true"></i>
         <h3>{props.human}</h3>
         <div id="messages">
           {props.conversations.map(renderMessage)}

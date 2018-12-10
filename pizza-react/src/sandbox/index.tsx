@@ -10,6 +10,7 @@ import ConfigPage from './pages/ConfigPage'
 import PizzaPage from '../components/PizzaPage'
 import PostPage from '../components/PostPage'
 import ProfileStatusPage from './pages/ProfileStatusPage'
+import TelemetryPage from './pages/TelemetryPage'
 import stores from './pages/stores'
 import embedhtml from './pages/embedhtml'
 import * as serviceWorker from '../serviceWorker'
@@ -17,16 +18,16 @@ import * as serviceWorker from '../serviceWorker'
 
 // const goto = (url:string) => browserHistory.push(url)
 
-const commandBarItems:(ICommandBarItemProps[]) = [
+const commandBarItems: (ICommandBarItemProps[]) = [
     {
-        key:'PizzaPage',
+        key: 'PizzaPage',
         name: 'PizzaPage',
-        onClick: ()=>{window.location.assign('/')},
+        onClick: () => { window.location.assign('/') },
     },
     {
         key: 'ConfigPage',
         name: 'ConfigPage',
-        onClick: ()=>{window.location.assign('/pages/configuration')},
+        onClick: () => { window.location.assign('/pages/configuration') },
     },
     {
         key: 'PostPage',
@@ -47,12 +48,21 @@ const commandBarItems:(ICommandBarItemProps[]) = [
         ['data-automation-id']: 'Stores'
     },
     {
+        key: 'Telemetry',
+        name: 'Telemetry',
+        iconProps: {
+            iconName: 'Telemetry'
+        },
+        href: '/pages/telemetry',
+        ['data-automation-id']: 'TelemetryPage'
+    },
+    {
         key: 'Profile',
         name: 'Profile',
         iconProps: {
             iconName: 'Profile'
         },
-        onClick: ()=>{window.location.assign('/pages/profilestatus')},
+        onClick: () => { window.location.assign('/pages/profilestatus') },
     },
 ]
 
@@ -72,12 +82,14 @@ ReactDOM.render(
                     <li><Link to="/posts">PostPage</Link> </li>
                     <li><Link to="/pages/stores">Stores</Link> </li>
                     <li><Link to="/pages/profilestatus">Profile</Link> </li>
+                    <li><Link to="/pages/telemetry">Telemetry</Link> </li>
                 </ul>
                 <Switch>
                     <Route path="/pages/configuration" component={ConfigPage} />
                     <Route path="/pages/stores" component={stores} />
                     <Route path="/pages/embedhtml" component={embedhtml} />
                     <Route path="/pages/profilestatus" component={ProfileStatusPage} />
+                    <Route path="/pages/telemetry" component={TelemetryPage} />
                     <Route path="/posts" component={PostPage} />
                     <Route path="/" component={PizzaPage} />
                 </Switch>

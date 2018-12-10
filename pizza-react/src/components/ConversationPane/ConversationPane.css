@@ -1,0 +1,9 @@
+div#messages {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+div#messages div.ms-DocumentCard {
+    display: flex;
+    flex-direction: column;
+}

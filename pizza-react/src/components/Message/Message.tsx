@@ -1,5 +1,5 @@
 import React from 'react'
-import { DocumentCard, DocumentCardLogo } from 'office-ui-fabric-react/lib/DocumentCard'
+import { DocumentCard, DocumentCardLogo, DocumentCardTitle } from 'office-ui-fabric-react/lib/DocumentCard'
 
 interface MessageProps {
     who: string,
@@ -10,7 +10,8 @@ interface MessageProps {
 export default function Message(props: MessageProps) {
     const logoIcon = props.who === 'human' ? 'Contact' : 'Robot'
     return <DocumentCard>
-        <p>{props.text}</p>
-        <DocumentCardLogo logoName={props.who} logoIcon={logoIcon} />
+        <i className={"ms-Icon ms-Icon--" + logoIcon} aria-hidden="true"></i>
+        <DocumentCardTitle title={props.text} />
+        {/* <DocumentCardLogo logoIcon={"ms-Icon--" + logoIcon} /> */}
     </DocumentCard>
 }
