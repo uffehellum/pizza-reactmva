@@ -8,7 +8,7 @@ interface StateProps { }
 interface OwnProps { }
 
 interface DispatchProps {
-    saveEvent: (telemetryEvent: TelemetryEvent) => void
+    saveContentEvent: (header: string) => void
 }
 
 interface ContentBlock {
@@ -24,8 +24,10 @@ type Props = StateProps & OwnProps & DispatchProps
 
 export class MockContentPage extends Component<Props, State> {
 
-    renderContentBlock = (block: ContentBlock) =>
-        <EmbedHtmlPane header={block.header} html={block.body} />
+    renderContentBlock = (block: ContentBlock) => {
+        this.props.saveContentEvent(block.header)
+        return <EmbedHtmlPane header={block.header} html={block.body} />
+    }
 
     renderBlocks = (blocks: ContentBlock[]) =>
         blocks &&
@@ -33,17 +35,27 @@ export class MockContentPage extends Component<Props, State> {
             {blocks.map(this.renderContentBlock)}
         </div>
 
-    render = () =>
+    render = () => 
         this.renderBlocks([
             { header: 'cat', body: '<h3>cat</h3>' }
         ])
+
+    componentWillUnmount = () => console.log("componentWillUnmount")
+    componentWillMount =() => console.log("ComponentWillMount")
 }
 
 function mapDispatchToProps(dispatch: any, ownProps: OwnProps): DispatchProps {
     return {
         ...ownProps,
-        saveEvent: (telemetryEvent: TelemetryEvent) =>
+        saveContentEvent: (header: string) => {
+            let telemetryEvent: TelemetryEvent = {
+                event : "content shown",
+                payload: {header},
+                timestamp: new Date(),
+                session: "session",
+            }
             SaveTelemetryEventAsBatch(telemetryEvent)(dispatch)
+        }
     }
 }
 
