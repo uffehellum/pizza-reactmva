@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TelemetryBatch, TelemetryEvent } from '../../../types'
+import { TelemetryEvent } from '../../../types'
 import { DocumentCard, DocumentCardTitle } from 'office-ui-fabric-react/lib/DocumentCard'
 import { connect, MapStateToProps } from 'react-redux';
 
@@ -7,11 +7,11 @@ interface DispatchProps { }
 
 interface OwnProps { }
 
-interface StateProps { currentBatch?: TelemetryBatch }
+interface StateProps { sentEvents: TelemetryEvent[] }
 
 type Props = DispatchProps & StateProps & OwnProps
 
-export class TelemetryBatchList extends Component<Props> {
+export class TelemetrySentList extends Component<Props> {
 
     constructor(props: Props) {
         super(props)
@@ -27,20 +27,19 @@ export class TelemetryBatchList extends Component<Props> {
             </DocumentCard>
         </li>
 
-    renderBatch = (b: TelemetryBatch) =>
+    renderList = (l: TelemetryEvent[]) =>
         <div>
-            <p>Started {b.timestamp.toISOString()}</p>
             <ul>
-                {b.events.map(this.renderEvent)}
+                {l.map(this.renderEvent)}
             </ul>
         </div>
 
     render = () =>
         <div>
-            <h2>Batch Monitor</h2>
+            <h2>Sent Monitor</h2>
             {
-                this.props.currentBatch
-                && this.renderBatch(this.props.currentBatch)
+                this.props.sentEvents
+                && this.renderList(this.props.sentEvents)
                 || <h2>No event batch found</h2>
             }
         </div>
@@ -55,7 +54,7 @@ function mapDispatchToProps(dispatch: any, ownProps: OwnProps): DispatchProps {
 
 interface myReduxState {
     telemetry: {
-        currentBatch: TelemetryBatch
+        sentEvents: TelemetryEvent[]
     }
 }
 
@@ -63,11 +62,11 @@ const mapStateToProps: MapStateToProps<StateProps, OwnProps, myReduxState> =
     (state: myReduxState, ownProps: OwnProps) => {
         return {
             ...ownProps,
-            currentBatch: state.telemetry && state.telemetry.currentBatch
+            sentEvents: state.telemetry && state.telemetry.sentEvents
         }
     }
 
 export default connect
     <StateProps, DispatchProps, OwnProps, myReduxState>
     (mapStateToProps, mapDispatchToProps)
-    (TelemetryBatchList)
+    (TelemetrySentList)

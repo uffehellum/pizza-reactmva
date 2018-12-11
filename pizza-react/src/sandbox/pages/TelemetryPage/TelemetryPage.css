@@ -1,0 +1,21 @@
+div.column {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div.column div.ms-DocumentCard {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 5px;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+li {
+    display: flex;
+}

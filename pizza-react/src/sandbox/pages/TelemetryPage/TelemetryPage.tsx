@@ -1,7 +1,10 @@
 import React from 'react'
 import TelemetryBatchList from './TelemetryBatchList'
-import MockTelemetryCard from './MockTelemetryCard'
-
+import TelemetrySentList from './TelemetrySentList'
+import MockTelemetryContentShownCard from './MockTelemetryContentShownCard'
+import MockTelemetrySendBatchCard from './MockTelemetrySendBatchCard'
+import MockTelemetrySendCard from './MockTelemetrySendCard'
+import './TelemetryPage.css'
 
 export default function TelemetryPage() {
     return (
@@ -9,10 +12,16 @@ export default function TelemetryPage() {
             <h1>Debug Telemetry Flow</h1>
             <div className="container">
                 <div className="column">
+                    <h2>Mock Telemetry</h2>
+                    <MockTelemetryContentShownCard />
+                    <MockTelemetrySendBatchCard/>
+                    <MockTelemetrySendCard/>
+                </div>
+                <div className="column">
                     <TelemetryBatchList />
                 </div>
                 <div className="column">
-                    <MockTelemetryCard />
+                    <TelemetrySentList />
                 </div>
             </div>
         </div>
