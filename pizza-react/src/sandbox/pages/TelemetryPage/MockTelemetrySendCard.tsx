@@ -4,10 +4,10 @@ import { DocumentCard, DocumentCardTitle } from 'office-ui-fabric-react/lib/Docu
 import { TextField } from 'office-ui-fabric-react/lib/TextField'
 import { connect, MapStateToProps } from 'react-redux';
 import { TelemetryEvent, Config } from '../../../types'
-import { SendBatchedTelemetryEvents } from '../../../redux/actions/telemetryActions'
+import { SendTelemetryEvent } from '../../../redux/actions/telemetryActions'
 
 interface DispatchProps {
-    sendBatch: (telemetryEvent: TelemetryEvent, config:Config) => void
+    sendEvent: (telemetryEvent: TelemetryEvent, config: Config) => void
 }
 
 interface OwnProps { }
@@ -24,8 +24,8 @@ export class MockTelemetrySendBatchCard extends Component<Props, State> {
     constructor(props: Props) {
         super(props)
         this.state = {
-            event: 'mock save batch',
-            session: 'batch session',
+            event: 'mock immediate event',
+            session: 'immediate session',
             payload: '{transition: "page"}',
             timestamp: new Date(),
         }
@@ -40,7 +40,7 @@ export class MockTelemetrySendBatchCard extends Component<Props, State> {
             payload: this.state.payload,
             session: this.state.session,
         }
-        this.props.sendBatch(telemetryEvent, this.props.config)
+        this.props.sendEvent(telemetryEvent, this.props.config)
     }
 
     onChangeText = (e: any, newValue?: string) => {
@@ -52,7 +52,7 @@ export class MockTelemetrySendBatchCard extends Component<Props, State> {
 
     render = () =>
         <DocumentCard>
-            <DocumentCardTitle title="Mock Send Batch" />
+            <DocumentCardTitle title="Mock Send Immediate" />
             <form onSubmit={this.onSubmit} className="docs-TextFieldExample">
                 <TextField
                     label="event"
@@ -90,8 +90,8 @@ export class MockTelemetrySendBatchCard extends Component<Props, State> {
 function mapDispatchToProps(dispatch: any, ownProps: OwnProps): DispatchProps {
     return {
         ...ownProps,
-        sendBatch: (telemetryEvent: TelemetryEvent, config: any) =>
-            SendBatchedTelemetryEvents(telemetryEvent, config)(dispatch)
+        sendEvent: (telemetryEvent: TelemetryEvent, config: any) =>
+            SendTelemetryEvent(telemetryEvent, config)(dispatch)
     }
 }
 

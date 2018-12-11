@@ -22,9 +22,9 @@ export class MockTelemetryContentShownCard extends Component<Props, State> {
     constructor(props: Props) {
         super(props)
         this.state = {
-            event: 'mock event',
+            event: 'mock content shown event',
             session: 'mock session',
-            payload: '{a:1, b:2, c:3}',
+            payload: '{contentid:1248}',
             timestamp: new Date(),
         }
     }
@@ -49,10 +49,10 @@ export class MockTelemetryContentShownCard extends Component<Props, State> {
 
     render = () =>
         <DocumentCard>
-            <DocumentCardTitle title="Enter mock telemetry event" />
+            <DocumentCardTitle title="Mock content shown event" />
             <form onSubmit={this.onSubmit} className="docs-TextFieldExample">
                 <TextField
-                    label="currentlyVeventalid"
+                    label="event"
                     name="event"
                     defaultValue={this.state.event}
                     required={true}
