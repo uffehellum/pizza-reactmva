@@ -6,6 +6,7 @@ import store from '../../../redux/store'
 
 import './index.css'
 import ConfigPage from '../ConfigPage'
+import MockContentPage from '../MockContentPage'
 import PizzaPage from '../../../components/PizzaPage'
 import PostPage from '../../../components/PostPage'
 import ProfileStatusPage from '../ProfileStatusPage'
@@ -22,6 +23,7 @@ export default () =>
                     <Route path="/pages/configuration" component={ConfigPage} />
                     <Route path="/pages/stores" component={stores} />
                     <Route path="/pages/embedhtml" component={embedhtml} />
+                    <Route path="/pages/mockcontent" component={MockContentPage} />
                     <Route path="/pages/profilestatus" component={ProfileStatusPage} />
                     <Route path="/pages/telemetry" component={TelemetryPage} />
                     <Route path="/posts" component={PostPage} />

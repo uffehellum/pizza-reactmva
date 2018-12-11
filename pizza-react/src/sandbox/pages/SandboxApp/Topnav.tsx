@@ -38,6 +38,14 @@ export class Topnav extends Component<RouteComponentProps> {
             ['data-automation-id']: 'PostPage'
         },
         {
+            key: 'MockContent',
+            name: 'MockContent',
+            iconProps: {
+                iconName: 'Document'
+            },
+            onClick: () => history.push('/pages/mockcontent'),
+        },
+        {
             key: 'Stores',
             name: 'Stores',
             iconProps: {
