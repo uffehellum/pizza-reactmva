@@ -2,6 +2,11 @@ import { TelemetryEvent } from '../../types'
 
 const defaultUrl = "https://vortex-sandbox.data.microsoft.com/collect/v1"
 
+/*
+$ curl https://vortex-sandbox.data.microsoft.com/collect/v1\
+  -X POST -H "Content-Type: application/json" -d '{"x":"abc"}'
+*/
+
 export interface TelemetryConfig {
     telemetryUrl: string
 }

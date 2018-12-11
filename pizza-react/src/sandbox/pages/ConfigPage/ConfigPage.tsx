@@ -1,11 +1,10 @@
-import React from 'react'
+import React, {Component} from 'react'
 import ConfigurationCard from './ConfigurationCard'
 import MockConfigCard from './MockConfigCard'
-// import ProfileStatusEntryCard from './ProfileStatusEntryCard'
-// import './ProfileStatusPage.css'
 
-export default function ProfileStatusPage() {
-    return (
+export default class ConfigPage extends Component {
+
+    render = ()=>
         <div>
             <h1>Debug Configuration Settings</h1>
             <div className="container">
@@ -19,5 +18,7 @@ export default function ProfileStatusPage() {
                 </div>
             </div>
         </div>
-    )
+    
+    componentWillUnmount = () => console.log("componentWillUnmount")
+    componentWillMount =() => console.log("ComponentWillMount")
 }

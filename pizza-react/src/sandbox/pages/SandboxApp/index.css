@@ -3,7 +3,11 @@
 }
 
 #sandboxnav li {
-  display: inline
+  display: inline;
+  background-color: lightgray;
+  padding: 2px;
+  margin: 3px;
+
 }
 
 body {
