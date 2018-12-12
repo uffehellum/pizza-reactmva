@@ -1,3 +1,3 @@
-import MockContentPage from './MockContentPage'
+import WrapMockContentPage from './WrapMockContentPage'
 
-export default MockContentPage
+export default WrapMockContentPage

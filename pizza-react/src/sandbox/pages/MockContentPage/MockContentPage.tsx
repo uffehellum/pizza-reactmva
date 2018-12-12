@@ -1,24 +1,19 @@
 import React, { Component } from 'react'
-import { connect, MapStateToProps } from 'react-redux';
 import { TelemetryEvent, Config } from '../../../types'
-import { SaveTelemetryEventAsBatch, SendBatchedTelemetryEvents } from '../../../redux/actions/telemetryActions'
 import EmbedHtmlPane from '../../../components/EmbedHtmlPane'
 import { CommandButton, ActionButton } from 'office-ui-fabric-react/lib/Button'
+import { showPeople, showDog, showSquirrel } from './ContentGenerator'
+import ContentBlock from './ContentBlock'
 
-interface StateProps {
+export interface StateProps {
     config: Config
 }
 
-interface OwnProps { }
+export interface OwnProps { }
 
-interface DispatchProps {
+export interface DispatchProps {
     saveContentEvent: (header: string) => void
     sendBatch: (telemetryEvent: TelemetryEvent, config: Config) => void
-}
-
-interface ContentBlock {
-    header: string
-    body: string
 }
 
 interface State {
@@ -38,15 +33,12 @@ export class MockContentPage extends Component<Props, State> {
         }
     }
 
-    showDog = () =>
+    addContentFirst = (content: ContentBlock) => {
+        const contentBlocks = [content, ...this.state.contentBlocks]
         this.setState({
-            contentBlocks: [{ header: 'Dog', body: 'Swishy <i>wagging</i> Tail' }]
+            contentBlocks
         })
-
-    showSquirrel = () =>
-        this.setState({
-            contentBlocks: [{ header: 'squirrel', body: 'Bushy Tail' }]
-        })
+    }
 
     renderContentBlock = (block: ContentBlock) => {
         this.props.saveContentEvent(block.header)
@@ -61,8 +53,9 @@ export class MockContentPage extends Component<Props, State> {
 
     render = () =>
         <div>
-            <CommandButton onClick={this.showSquirrel}>Show Squirrel</CommandButton>
-            <ActionButton onClick={this.showDog}>Show dog</ActionButton>
+            <CommandButton onClick={showSquirrel(this.addContentFirst)}>Show Squirrel</CommandButton>
+            <ActionButton onClick={showDog(this.addContentFirst)}>Show dog</ActionButton>
+            <ActionButton onClick={showPeople(this.addContentFirst)}>Add people</ActionButton>
             {this.renderBlocks(this.state.contentBlocks)}
         </div>
 
@@ -74,37 +67,3 @@ export class MockContentPage extends Component<Props, State> {
     componentWillMount = () => console.log("ComponentWillMount")
 }
 
-function mapDispatchToProps(dispatch: any, ownProps: OwnProps): DispatchProps {
-    return {
-        ...ownProps,
-        saveContentEvent: (header: string) => {
-            let telemetryEvent: TelemetryEvent = {
-                event: "content shown",
-                payload: { header },
-                timestamp: new Date(),
-                session: "session",
-            }
-            SaveTelemetryEventAsBatch(telemetryEvent)(dispatch)
-        },
-        sendBatch: (telemetryEvent: TelemetryEvent, config: any) =>
-            SendBatchedTelemetryEvents(telemetryEvent, config)(dispatch)
-
-    }
-}
-
-interface myReduxState {
-    config: Config
-}
-
-const mapStateToProps: MapStateToProps<StateProps, OwnProps, myReduxState> =
-    (state: myReduxState, ownProps: OwnProps) => {
-        return {
-            ...ownProps,
-            config: state.config
-        }
-    }
-
-export default connect
-    <StateProps, DispatchProps, OwnProps, myReduxState>
-    (mapStateToProps, mapDispatchToProps)
-    (MockContentPage)

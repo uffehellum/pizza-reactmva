@@ -1,5 +1,4 @@
 div.column {
-    display: flex;
     flex-wrap: wrap;
 }
 
