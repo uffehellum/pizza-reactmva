@@ -6,6 +6,8 @@ import samples from '../../data'
 import { Humans, Stores, Conversation } from '../../data'
 import { Route } from 'react-router-dom'
 import './PizzaPage.css';
+import Search from '../Search/Search';
+import SearchBar from '../Search/SearchBar'
 // import { initializeIcons } from '@uifabric/icons'
 
 // initializeIcons()
@@ -45,6 +47,8 @@ class App extends Component<AppProps, AppState> {
     return (
       <div className="App">
         <div className="container">
+         <div><SearchBar /></div>
+        
           <div className="column" id="inbox">
             <InboxPane
               humans={humans}
