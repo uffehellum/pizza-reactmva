@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { TelemetryEvent, Config } from '../../../types'
 import EmbedHtmlPane from '../../../components/EmbedHtmlPane'
-import { CommandButton, ActionButton } from 'office-ui-fabric-react/lib/Button'
+import { DefaultButton } from 'office-ui-fabric-react/lib/Button'
 import { showPeople, showDog, showSquirrel } from './ContentGenerator'
 import ContentBlock from './ContentBlock'
 
@@ -53,9 +53,11 @@ export class MockContentPage extends Component<Props, State> {
 
     render = () =>
         <div>
-            <CommandButton onClick={showSquirrel(this.addContentFirst)}>Show Squirrel</CommandButton>
-            <ActionButton onClick={showDog(this.addContentFirst)}>Show dog</ActionButton>
-            <ActionButton onClick={showPeople(this.addContentFirst)}>Add people</ActionButton>
+            <h1>Mock content</h1>
+            <p>You can add content from the buttons below</p>
+            <DefaultButton onClick={showSquirrel(this.addContentFirst)}>Show Squirrel</DefaultButton>
+            <DefaultButton onClick={showDog(this.addContentFirst)}>Show dog</DefaultButton>
+            <DefaultButton onClick={showPeople(this.addContentFirst)}>Add people</DefaultButton>
             {this.renderBlocks(this.state.contentBlocks)}
         </div>
 
