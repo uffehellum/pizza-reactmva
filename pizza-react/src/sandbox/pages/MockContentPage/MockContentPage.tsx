@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect, MapStateToProps } from 'react-redux';
 import { TelemetryEvent, Config } from '../../../types'
-import { SaveTelemetryEventAsBatch, SendBatchedTelemetryEvents} from '../../../redux/actions/telemetryActions'
+import { SaveTelemetryEventAsBatch, SendBatchedTelemetryEvents } from '../../../redux/actions/telemetryActions'
 import EmbedHtmlPane from '../../../components/EmbedHtmlPane'
-import { CommandButton } from 'office-ui-fabric-react/lib/Button'
+import { CommandButton, ActionButton } from 'office-ui-fabric-react/lib/Button'
 
 interface StateProps {
     config: Config
@@ -38,6 +38,11 @@ export class MockContentPage extends Component<Props, State> {
         }
     }
 
+    showDog = () =>
+        this.setState({
+            contentBlocks: [{ header: 'Dog', body: 'Swishy <i>wagging</i> Tail' }]
+        })
+
     showSquirrel = () =>
         this.setState({
             contentBlocks: [{ header: 'squirrel', body: 'Bushy Tail' }]
@@ -57,14 +62,15 @@ export class MockContentPage extends Component<Props, State> {
     render = () =>
         <div>
             <CommandButton onClick={this.showSquirrel}>Show Squirrel</CommandButton>
+            <ActionButton onClick={this.showDog}>Show dog</ActionButton>
             {this.renderBlocks(this.state.contentBlocks)}
         </div>
 
     componentWillUnmount = () => this.props.sendBatch(
-        {event:'leaving mock content page', payload:null, session: 'mock session', timestamp:new Date()},
+        { event: 'leaving mock content page', payload: null, session: 'mock session', timestamp: new Date() },
         this.props.config
     )
-    
+
     componentWillMount = () => console.log("ComponentWillMount")
 }
 
@@ -81,14 +87,14 @@ function mapDispatchToProps(dispatch: any, ownProps: OwnProps): DispatchProps {
             SaveTelemetryEventAsBatch(telemetryEvent)(dispatch)
         },
         sendBatch: (telemetryEvent: TelemetryEvent, config: any) =>
-        SendBatchedTelemetryEvents(telemetryEvent, config)(dispatch)
+            SendBatchedTelemetryEvents(telemetryEvent, config)(dispatch)
 
     }
 }
 
 interface myReduxState {
     config: Config
- }
+}
 
 const mapStateToProps: MapStateToProps<StateProps, OwnProps, myReduxState> =
     (state: myReduxState, ownProps: OwnProps) => {
