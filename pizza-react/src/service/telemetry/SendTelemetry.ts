@@ -1,7 +1,7 @@
 import { TelemetryEvent } from '../../types'
 
-const defaultUrl = "https://vortex-sandbox.data.microsoft.com/collect/v1"
-
+// const defaultUrl = "https://vortex-sandbox.data.microsoft.com/collect/v1"
+const defaultUrl = "https://web.vortex.data.microsoft.com/collect/v1"
 /*
 $ curl https://vortex-sandbox.data.microsoft.com/collect/v1\
   -X POST -H "Content-Type: application/json" -d '{"x":"abc"}'
@@ -12,17 +12,18 @@ export interface TelemetryConfig {
 }
 
 export async function SendTelemetry(
-    request: TelemetryEvent, 
+    request: TelemetryEvent,
     config: TelemetryConfig)
     : Promise<void> {
     const relayUrl = config.telemetryUrl || defaultUrl
     const params: RequestInit = {
+        credentials:"omit",
         method: 'POST',
-        mode:'cors',
+        mode: 'cors',
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'text/plain;charset=UTF-8'
         },
-        body: JSON.stringify(request)
+        body: JSON.stringify(request.payload)
     }
     const reponse = await fetch(relayUrl, params)
     const result = await reponse.json()
@@ -49,6 +50,319 @@ curl 'https://web.vortex.data.microsoft.com/collect/v1' \
 */
 
 /*
+
+fetch("https://web.vortex.data.microsoft.com/collect/v1", {
+    "credentials":"omit",
+    "headers":{
+        "content-type":"text/plain;charset=UTF-8"
+    },
+    "referrer":"https://support.xbox.com/en-US/browse/xbox-one",
+    "referrerPolicy":"no-referrer-when-downgrade",
+    "body":"{
+        \"ver\":\"2.1\",
+        \"name\":\"Ms.Webi.MeControl.PartnerApiCall\",
+        \"time\":\"2018-12-12T23:27:04.227Z\",
+        \"appId\":\"JS:MeControl\",
+        \"appVer\":\"Web:9.18275.0\",
+        \"cV\":\"8L0kRdvDhD82/cIq.0\",
+        \"os\":\"Windows\",
+        \"data\":{
+            \"partner\":\"xboxcomuhf\",
+            \"controlVersion\":\"9.18275.0\",
+            \"methodName\":\"load\",
+            \"parameters\":\"{
+                \\\"containerId\\\":\\\"*string*\\\",
+                \\\"enabled\\\":\\\"*boolean*\\\",
+                \\\"headerHeight\\\":\\\"*number*\\\",
+                \\\"debug\\\":\\\"*boolean*\\\",
+                \\\"extensibleLinks\\\":{
+                    \\\"0\\\":{
+                        \\\"string\\\":\\\"*string*\\\",
+                        \\\"url\\\":\\\"*string*\\\",
+                        \\\"id\\\":\\\"*string*\\\"
+                    },
+                    \\\"1\\\":{
+                        \\\"string\\\":\\\"*string*\\\",
+                        \\\"url\\\":\\\"*string*\\\",
+                        \\\"id\\\":\\\"*string*\\\"
+                    },
+                    \\\"2\\\":{
+                        \\\"string\\\":\\\"*string*\\\",
+                        \\\"url\\\":\\\"*string*\\\",
+                        \\\"id\\\":\\\"*string*\\\"
+                    },
+                    \\\"3\\\":{
+                        \\\"string\\\":\\\"*string*\\\",
+                        \\\"url\\\":\\\"*string*\\\",
+                        \\\"id\\\":\\\"*string*\\\"
+                    },
+                    \\\"4\\\":{
+                        \\\"string\\\":\\\"*string*\\\",
+                        \\\"url\\\":\\\"*string*\\\",
+                        \\\"id\\\":\\\"*string*\\\"
+                    },
+                    \\\"5\\\":{
+                        \\\"string\\\":\\\"*string*\\\",
+                        \\\"url\\\":\\\"*string*\\\",
+                        \\\"id\\\":\\\"*string*\\\"
+                    }
+                },
+                \\\"userData\\\":{
+                    \\\"idp\\\":\\\"msa\\\",
+                    \\\"firstName\\\":\\\"*string*\\\",
+                    \\\"lastName\\\":\\\"*string*\\\",
+                    \\\"memberName\\\":\\\"*string*\\\",
+                    \\\"cid\\\":\\\"*string*\\\",
+                    \\\"authenticatedState\\\":\\\"1\\\",
+                    \\\"nickName\\\":\\\"*string*\\\",
+                    \\\"tileUrl\\\":\\\"*string*\\\",
+                    \\\"accountTier\\\":\\\"*string*\\\"
+                },
+                \\\"rpData\\\":{
+                    \\\"preferredIdp\\\":\\\"*string*\\\",
+                    \\\"msaInfo\\\":{
+                        \\\"signInUrl\\\":\\\"*string*\\\",
+                        \\\"signOutUrl\\\":\\\"*string*\\\",
+                        \\\"meUrl\\\":\\\"*string*\\\",
+                        \\\"accountSettingsUrl\\\":\\\"*string*\\\"
+                    },
+                    \\\"aadInfo\\\":{
+                        \\\"signOutUrl\\\":\\\"*string*\\\",
+                        \\\"appId\\\":\\\"*string*\\\",
+                        \\\"siteUrl\\\":\\\"*string*\\\",
+                        \\\"blockMsaFed\\\":\\\"*boolean*\\\"
+                    }
+                },
+                \\\"events\\\":{
+                    \\\"onEventLog\\\":\\\"*function*\\\"
+                },
+                \\\"signInStr\\\":\\\"*string*\\\",
+                \\\"signOutStr\\\":\\\"*string*\\\",
+                \\\"market\\\":\\\"*string*\\\",
+                \\\"urlBase\\\":\\\"*string*\\\",
+                \\\"isINT\\\":\\\"*boolean*\\\",
+                \\\"mobileBreakpoints\\\":{}
+            }\"
+        },
+        \"ext\":{
+            \"javascript\":{
+                \"ver\":\"1.1\",
+                \"libVer\":\"4.2.3\",
+                \"domain\":\"support.xbox.com\",
+                \"userConsent\":false
+            },
+            \"app\":{
+                \"env\":\"Prod\"
+            }
+        }
+    }
+    \n
+    {
+        \"ver\":\"2.1\",
+        \"name\":\"Ms.Webi.MeControl.PartnerApiCall\",
+        \"time\":\"2018-12-12T23:27:04.228Z\",
+        \"appId\":\"JS:MeControl\",
+        \"appVer\":\"Web:9.18275.0\",
+        \"cV\":\"8L0kRdvDhD82/cIq.0\",
+        \"os\":\"Windows\",
+        \"data\":{
+            \"partner\":\"xboxcomuhf\",
+            \"controlVersion\":\"9.18275.0\",
+            \"methodName\":\"setMobileState\",
+            \"parameters\":\"{
+                \\\"0\\\":\\\"*number*\\\"
+            }\"
+        },
+        \"ext\":{
+            \"javascript\":{
+                \"ver\":\"1.1\",
+                \"libVer\":\"4.2.3\",
+                \"domain\":\"support.xbox.com\",
+                \"userConsent\":false
+            },
+            \"app\":{
+                \"env\":\"Prod\"
+            }
+        }
+    }
+    \n
+    {
+        \"ver\":\"2.1\",
+        \"name\":\"Ms.Webi.OutgoingRequest\",
+        \"time\":\"2018-12-12T23:27:04.228Z\",
+        \"appId\":\"JS:MeControl\",
+        \"appVer\":\"Web:9.18275.0\",
+        \"cV\":\"8L0kRdvDhD82/cIq.1\",
+        \"os\":\"Windows\",
+        \"data\":{
+            \"baseType\":\"Ms.Qos.OutgoingServiceRequest\",
+            \"pageName\":\"None\",
+            \"impressionGuid\":\"320c0971-e23a-4cc2-a152-d7b1e7d00eb9\",
+            \"market\":\"en-US\",
+            \"customData\":\"{
+                \\\"metaTags\\\":{
+                    \\\"authtype\\\":\\\"msa\\\",
+                    \\\"pgpart\\\":\\\"xboxcomuhf\\\"
+                },
+                \\\"config\\\":{
+                    \\\"ver\\\":\\\"9.18275.0\\\",
+                    \\\"mkt\\\":\\\"en-US\\\",
+                    \\\"ptn\\\":\\\"xboxcomuhf\\\",
+                    \\\"gfx\\\":\\\"https://mem.gfx.ms/me\\\",
+                    \\\"dbg\\\":false,
+                    \\\"aad\\\":false,
+                    \\\"int\\\":false,
+                    \\\"pxy\\\":false,
+                    \\\"msTxt\\\":true,
+                    \\\"rwd\\\":true,
+                    \\\"telEvs\\\":\\\"PageAction, PageView, ContentUpdate, OutgoingRequest, ClientError, PartnerApiCall\\\",
+                    \\\"remAcc\\\":true,
+                    \\\"main\\\":\\\"meBoot\\\",
+                    \\\"wreply\\\":null
+                },
+                \\\"url\\\":\\\"https://support.xbox.com/en-US/browse/xbox-one\\\"
+            }\",
+            \"baseData\":{
+                \"operationName\":\"meBoot\",
+                \"dependencyOperationName\":\"DownloadScript\",
+                \"dependencyName\":\"MeControl\",
+                \"latencyMs\":18.40000000083819,
+                \"succeeded\":true,
+                \"targetUri\":\"https://mem.gfx.ms/me/MeControl/9.18275.0/en-US/meBoot.min.js\"
+            }
+        },
+        \"ext\":{
+            \"javascript\":{
+                \"ver\":\"1.1\",
+                \"libVer\":\"4.2.3\",
+                \"domain\":\"support.xbox.com\",
+                \"userConsent\":false
+            },
+            \"app\":{
+                \"env\":\"Prod\"
+            }
+        }
+    }
+    \n
+    {
+        \"ver\":\"2.1\",
+        \"name\":\"Ms.Webi.OutgoingRequest\",
+        \"time\":\"2018-12-12T23:27:04.229Z\",
+        \"appId\":\"JS:MeControl\",
+        \"appVer\":\"Web:9.18275.0\",
+        \"cV\":\"8L0kRdvDhD82/cIq.2\",
+        \"os\":\"Windows\",
+        \"data\":{
+            \"baseType\":\"Ms.Qos.OutgoingServiceRequest\",
+            \"pageName\":\"None\",
+            \"impressionGuid\":\"320c0971-e23a-4cc2-a152-d7b1e7d00eb9\",
+            \"market\":\"en-US\",
+            \"customData\":\"{
+                \\\"metaTags\\\":{
+                    \\\"authtype\\\":\\\"msa\\\",
+                    \\\"pgpart\\\":\\\"xboxcomuhf\\\"
+                },
+                \\\"config\\\":{
+                    \\\"ver\\\":\\\"9.18275.0\\\",
+                    \\\"mkt\\\":\\\"en-US\\\",
+                    \\\"ptn\\\":\\\"xboxcomuhf\\\",
+                    \\\"gfx\\\":\\\"https://mem.gfx.ms/me\\\",
+                    \\\"dbg\\\":false,
+                    \\\"aad\\\":false,
+                    \\\"int\\\":false,
+                    \\\"pxy\\\":false,
+                    \\\"msTxt\\\":true,
+                    \\\"rwd\\\":true,
+                    \\\"telEvs\\\":\\\"PageAction, PageView, ContentUpdate, OutgoingRequest, ClientError, PartnerApiCall\\\",
+                    \\\"remAcc\\\":true,
+                    \\\"main\\\":\\\"meBoot\\\",
+                    \\\"wreply\\\":null
+                },
+                \\\"url\\\":\\\"https://support.xbox.com/en-US/browse/xbox-one\\\"
+            }\",
+            \"baseData\":{
+                \"operationName\":\"meCore\",
+                \"dependencyOperationName\":\"DownloadScript\",
+                \"dependencyName\":\"MeControl\",
+                \"latencyMs\":87.89999998407438,
+                \"succeeded\":true,
+                \"targetUri\":\"https://mem.gfx.ms/me/MeControl/9.18275.0/en-US/meCore.min.js\"
+            }
+        },
+        \"ext\":{
+            \"javascript\":{
+                \"ver\":\"1.1\",
+                \"libVer\":\"4.2.3\",
+                \"domain\":\"support.xbox.com\",
+                \"userConsent\":false
+            },
+            \"app\":{
+                \"env\":\"Prod\"
+            }
+        }
+    }
+    \n
+    {
+        \"ver\":\"2.1\",
+        \"name\":\"Ms.Webi.PageView\",
+        \"time\":\"2018-12-12T23:27:04.259Z\",
+        \"appId\":\"JS:MeControl\",
+        \"appVer\":\"Web:9.18275.0\",
+        \"cV\":\"8L0kRdvDhD82/cIq.2.0\",
+        \"os\":\"Windows\",
+        \"data\":{
+            \"baseType\":\"Ms.Content.PageView\",
+            \"cookieEnabled\":true,
+            \"isJs\":true,
+            \"isLoggedIn\":true,
+            \"isManual\":true,
+            \"baseData\":{
+                \"ver\":\"1.1\",
+                \"pageName\":\"Initial Collapsed\",
+                \"impressionGuid\":\"320c0971-e23a-4cc2-a152-d7b1e7d00eb9\",
+                \"market\":\"en-US\",
+                \"pageTags\":\"{
+                    \\\"metaTags\\\":{
+                        \\\"authtype\\\":\\\"msa\\\",
+                        \\\"pgpart\\\":\\\"xboxcomuhf\\\"
+                    },
+                    \\\"config\\\":{
+                        \\\"ver\\\":\\\"9.18275.0\\\",
+                        \\\"mkt\\\":\\\"en-US\\\",
+                        \\\"ptn\\\":\\\"xboxcomuhf\\\",
+                        \\\"gfx\\\":\\\"https://mem.gfx.ms/me\\\",
+                        \\\"dbg\\\":false,
+                        \\\"aad\\\":false,
+                        \\\"int\\\":false,
+                        \\\"pxy\\\":false,
+                        \\\"msTxt\\\":true,
+                        \\\"rwd\\\":true,
+                        \\\"telEvs\\\":\\\"PageAction, PageView, ContentUpdate, OutgoingRequest, ClientError, PartnerApiCall\\\",
+                        \\\"remAcc\\\":true,
+                        \\\"main\\\":\\\"meBoot\\\",
+                        \\\"wreply\\\":null
+                    },
+                    \\\"url\\\":\\\"https://support.xbox.com/en-US/browse/xbox-one\\\"
+                }\",
+                \"resHeight\":1080,
+                \"resWidth\":1920
+            }
+        },
+        \"ext\":{
+            \"javascript\":{
+                \"ver\":\"1.1\",
+                \"libVer\":\"4.2.3\",
+                \"domain\":\"support.xbox.com\",
+                \"userConsent\":false
+            },
+            \"app\":{
+                \"env\":\"Prod\"
+            }
+        }
+    }",
+    "method":"POST",
+    "mode":"cors"
+});
 
 fetch(
     "https://web.vortex.data.microsoft.com/collect/v1",
