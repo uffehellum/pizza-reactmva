@@ -23,7 +23,7 @@ export class TelemetrySentList extends Component<Props> {
                 <DocumentCardTitle title={te.event} />
                 <p>{te.session}</p>
                 <p>{te.timestamp.toISOString()}</p>
-                <div>{te.payload}</div>
+                <div>{JSON.stringify(te.payload)}</div>
             </DocumentCard>
         </li>
 

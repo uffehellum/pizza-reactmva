@@ -1,5 +1,5 @@
 import { ActionTypes, Post } from '../../types'
-import typicode from '../../repository/typicode'
+import typicode from '../../service/typicode'
 
 interface DispatchType {
     type: string

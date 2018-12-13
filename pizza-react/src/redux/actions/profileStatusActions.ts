@@ -1,5 +1,5 @@
 import { ActionTypes, DispatchFunction, ProfileStatus, ProfileStatusRequest } from '../../types'
-import { FetchProfile, ProfileStatusConfig } from '../../repository/profile'
+import { FetchProfile, ProfileStatusConfig } from '../../service/profile'
 
 export const fetchProfileStatus = 
     (request: ProfileStatusRequest, config:ProfileStatusConfig) => 
