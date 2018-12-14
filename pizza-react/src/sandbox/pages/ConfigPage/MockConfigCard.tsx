@@ -57,6 +57,7 @@ export class MockRequestProfileStatusCard extends Component<Props, any> {
                 <TextField
                     label="ContentUrl"
                     name="ContentUrl"
+                    className="contentUrlClass"
                     defaultValue={this.props.config.ContentUrl}
                     required={true}
                     onChange={this.onChangeText}

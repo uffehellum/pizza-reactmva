@@ -1,0 +1,3 @@
+export const FETCH_SUGGESTIONS = 'FETCH_SUGGESTIONS';
+export const FETCH_SEARCH = 'FETCH_SEARCH';
+ 

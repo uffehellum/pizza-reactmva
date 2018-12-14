@@ -2,17 +2,24 @@ import React, { Component, FormEvent } from 'react'
 import { connect } from 'react-redux'
 import { newPost } from '../../redux/actions/postActions'
 import { Post } from '../../types'
+import SamplePostForm from '../SamplePosts/SamplePostForm';
 
 export class PostForm extends Component<any, any> {
 
     constructor(props: any) {
         super(props)
         this.state = {
-            title: '',
-            body: ''
+            title: this.props.title,
+            body: this.props.body,
+            submitText: this.props.submitText
         }
     }
-
+    onConsole = () => {
+        console.log("title: ", this.state.title);
+    }
+    onSub = () => {
+        this.setState({submitText: "back"})
+    }
     onChange = ({ target }: { target: { name: string, value: string } }) =>
         this.setState({ [target.name]: target.value })
 
@@ -21,18 +28,22 @@ export class PostForm extends Component<any, any> {
         const post = {
             title: this.state.title,
             body: this.state.body,
+    
         }
-        console.log(post)
+        console.log(post);
         this.props.newPost(post)
     }
 
     render = () =>
         <div>
             <h1>Add Post</h1>
-            <form onSubmit={this.onSubmit}>
+            <br/>
+            <form onSubmit={this.onSubmit} className="formSubmit">
                 <div>
-                    <label>title</label>
-                    <input name="title" type="text"
+                    <label >title</label>
+                    <input 
+                        className="titleField"
+                        name="title" type="text"
                         onChange={this.onChange}
                         value={this.state.title} />
                 </div>
@@ -43,9 +54,12 @@ export class PostForm extends Component<any, any> {
                         onChange={this.onChange}
                         value={this.state.body} />
                 </div>
-                <br />
+                <br />onSubmit
                 <button type="submit">Submit</button>
+                <button className="postformSubmitButton" onClick={this.onSub.bind(this)}>{this.props.submitText}</button>
+
             </form>
+
         </div>
 }
 

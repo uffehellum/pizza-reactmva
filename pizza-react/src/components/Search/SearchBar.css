@@ -1,0 +1,29 @@
+#sbar {
+    width:538px;
+}
+
+.searchmodule {
+    position: relative;
+    width: 600px;
+    margin: 0 auto;
+}
+
+.suggestionsList{
+    position: absolute;
+    z-index: 99;
+    background: #fff;
+    width: 540px;
+    border: 1px solid #cdcdcd;
+    box-shadow: 2px 2px 6px #cdcdcd;
+    border-radius: 0 0 6px 6px
+} 
+
+.suggestionsList div {
+    padding: 9px;
+    border-bottom: 1px dotted #616060;
+}
+
+.suggestionsList div:hover {
+    background: #cdcdcd;
+    cursor: pointer;
+}

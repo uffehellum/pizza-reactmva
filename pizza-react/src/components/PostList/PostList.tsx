@@ -18,7 +18,7 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps & OwnProps
 
 interface State {
-  // posts: Post[]
+  posts: Post[]
 }
 
 export class PostList extends Component<Props, State, any> {

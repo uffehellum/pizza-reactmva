@@ -6,6 +6,7 @@ using System;
 using System.IO;
 
 namespace SxcJasmine
+
 {
     [TestClass]
     public class ScenarioPostFormAndSeeResult
@@ -16,12 +17,12 @@ namespace SxcJasmine
         [TestInitialize]
         public void Init()
         {
-            var chrmOptions = new ChromeOptions();
-            chrmOptions.AddArgument("headless");
-            _driver = new ChromeDriver(chrmOptions);
+           // var chrmOptions = new ChromeOptions();
+          //  chrmOptions.AddArgument("headless");
+            _driver = new ChromeDriver();
             _driver.Navigate().GoToUrl("http://localhost:3001");
             _driver.Manage().Window.Maximize();
-            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
+            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
         }
 
         [TestCleanup]
@@ -43,9 +44,26 @@ namespace SxcJasmine
         [TestMethod]
         public void VerifyScenarioPostFormAndSeeResult()
         {
+            NavigateToConfigPage();
+            FillingMockConfiguration();
             NavigateToFormsPage();
             FillTitleFieldAndSubmitWithEnter(titleValue: "Really new post");
             FindNewPostOnList("Really new post");
+        }
+        private void NavigateToConfigPage()
+        {
+            _driver.FindElement(By.CssSelector(@"li a[href='/pages/configuration']")).Click();
+            var heading = _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(
+                By.CssSelector(@"h2")));
+            TakeScreenShot(_driver, "NavigateToConfigPage");
+            //Assert.AreEqual("Current Configuration",heading.Text);
+          
+        }
+         private void FillingMockConfiguration()
+        {
+            LocateAndTypeInTextField("ContentUrl", "http://compass/index/1");
+            LocateAndTypeInTextField("ProfileStatusUrl", "http://compass/profile/1");
+
         }
 
         private void FindNewPostOnList(string titleValue)
@@ -53,6 +71,7 @@ namespace SxcJasmine
             var newpost = _wait.Until(
                 SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(
                 By.XPath($"//td[contains(text(),'{titleValue}')]")));
+            TakeScreenShot(_driver, "Finding the new post that was entered");
             Assert.AreEqual(titleValue, newpost.Text);
             Assert.IsNotNull(newpost);
         }
@@ -61,7 +80,8 @@ namespace SxcJasmine
         {
             LocateAndTypeInTextField("title", titleValue);
             LocateAndTypeInTextField("title", Keys.Return);
-        }
+          // _driver.FindElement(By.Id(@"input[id='TextField45']")).Text;
+         }
 
         private void LocateAndTypeInTextField(string fieldname, string keystrokes)
         {
