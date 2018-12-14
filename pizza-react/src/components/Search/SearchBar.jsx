@@ -1,53 +1,87 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Suggestions from './Suggestions'
-
+//import Suggestions2 from './Suggestions2'
+import './SearchBar.css'
+import { connect } from 'react-redux';
+import { fetchSuggestions, fetchSearch } from '../../redux/actions/searchActions';
+import { PropTypes } from 'prop-types';
 const { API_KEY } = process.env
 const API_URL = ''
 
 class Search extends Component {
   state = {
     query: '',
-    results: []
+    //suggestions: [],
+    //searchArticles: [],
+    // searchHeader: ''
   }
-
-  getInfo = () => {
-    console.log("enterd searchbar")
-    axios.get('https://www.microsoft.com/services/api/v3/suggest?market=en-us&clientId=7F27B536-CF6B-4C65-8638-A0F8CBDFCA65&sources=Microsoft-Terms%2CIris-Products%2CDCatAll-Products&filter=%2BClientType%3AStoreWeb&counts=5%2C1%2C5&query=sd')
-    
-      .then(({ data }) => {
-        console.log("drata", data.ResultSets)
-        this.setState({
-          results: data.ResultSets
-        })
-      })
-  }
-
-  handleInputChange = () => {
+  handleInputChange(e) {
+    //console.log("the netx val:", e.target.value)
     this.setState({
       query: this.search.value
     }, () => {
-      if (this.state.query && this.state.query.length > 1) {
-        if (this.state.query.length % 2 === 0) {
-          this.getInfo()
-        }
-      } else if (!this.state.query) {
-      }
+      console.log("the query string is ", this.state.query)
+      this.props.fetchSuggestions(this.state.query)
     })
   }
 
   render() {
     return (
-      <form>
-        <input
-          placeholder="Search for..."
-          ref={input => this.search = input}
-          onChange={this.handleInputChange}
-        />
-        <Suggestions results={this.state.results} />
-      </form>
+      <div>
+        <form onSubmit={this.props.fetchSearch} id="searchBar">
+          <div className="searchmodule">
+            <input id="sbar"
+              placeholder="Search for..."
+              autoComplete={"off"}
+              ref={input => this.search = input}
+              onChange={this.handleInputChange.bind(this)}
+            />
+            <button type="submit">Submit</button>
+
+            {this.props.suggestions && this.props.suggestions.length > 0 &&
+              <div class="suggestionsList">
+                {/* <Suggestions suggestions={this.props.suggestions} /> */}
+                <Suggestions suggestions={this.props.suggestions} />
+              </div>}
+          </div>
+
+        </form>
+        <h1>{this.props.searchHeader}</h1>
+        {this.props.searchArticles &&
+          this.props.searchArticles.map((searcArticle, index) =>
+            <div>
+              <h2>{searcArticle.title_en_us}</h2>
+              <br />
+              <br />
+              <span>{searcArticle.content_en_us}</span>
+              <hr width="100%"></hr>
+            </div>
+          )
+        }
+      </div>
     )
   }
 }
 
-export default Search
+Search.propTypes = {
+  fetchSuggestions: PropTypes.func.isRequired,
+  fetchSearch: PropTypes.func.isRequired,
+  suggestions: PropTypes.array.isRequired,
+  searchArticles: PropTypes.array.isRequired,
+  searchHeader: PropTypes.string
+
+}
+
+const mapStateToProps = state => ({
+  suggestions: state.search.suggestions,
+  searchArticles: state.search.searchArticles,
+  searchHeader: state.search.searchHeader
+})
+
+const mapDispatchToProps = {
+  fetchSuggestions,
+  fetchSearch
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
+//export default Search

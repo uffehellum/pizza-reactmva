@@ -7,10 +7,10 @@ import { Humans, Stores, Conversation } from '../../data'
 import { Route } from 'react-router-dom'
 import './PizzaPage.css';
 import Search from '../Search/Search';
-import SearchBar from '../Search/SearchBar'
-// import { initializeIcons } from '@uifabric/icons'
+import SearchBar from '../Search/SearchBar';
+import SampleSearch from '../SampleSearch/SampleSearch';
 
-// initializeIcons()
+
 
 interface AppState {
   humans: Humans,
@@ -47,8 +47,8 @@ class App extends Component<AppProps, AppState> {
     return (
       <div className="App">
         <div className="container">
-         <div><SearchBar /></div>
         
+       <SearchBar />
           <div className="column" id="inbox">
             <InboxPane
               humans={humans}

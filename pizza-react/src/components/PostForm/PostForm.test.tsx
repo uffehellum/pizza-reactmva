@@ -57,14 +57,3 @@ describe('PostForm without redux', () => {
 
 
 })
-// it('testing the postform on wrapper instance', () => {
-//   const wrapper = shallow(<PostForm />);
-//   const instance = wrapper.instance();
-//   console.log(instance) ;
-//   instance.onChange();
-//   //wrapper.state.title;
-
-// })
-// console.log("the value here at postform is ", postForm.state.title);
-    // postForm.onChange({ target: { name: "title", value: "xbox mock" }});
-    // console.log("the value here at postform is ", postForm.state.title);
